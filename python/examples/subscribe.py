@@ -86,30 +86,30 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, message):
     load = str(message.payload)
     if "red" in load:
-        colorWipe(strip, Color(255, 0, 0))
         print("Red message received. Turning LED to red")
+        colorWipe(strip, Color(255, 0, 0))
         return
 
     if "green" in load:
-        colorWipe(strip, Color(0, 255, 0))
         print("Green message received. Turning LED to Green")
+        colorWipe(strip, Color(0, 255, 0))
         return
     
     if "blue" in load:
-        colorWipe(strip, Color(0, 0, 255))
         print("Blue message received. Turning LED to Blue")
+        colorWipe(strip, Color(0, 0, 255))
         return
     
     if "theaterChase" in load:
+        print("TheaterChase message received. Turning LED to theater chase")
         theaterChase(strip, Color(127, 127, 127))  # White theater chase
         theaterChase(strip, Color(127,   0,   0))  # Red theater chase
         theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
-        print("TheaterChase message received. Turning LED to theater chase")
         return
 
     if "rainbow" in load:
-        rainbow(strip)
         print("Rainbow message received. Turning LED to Rainbow")
+        rainbow(strip)
 
 #----------------------------------------------LED Setup------------------------------------------------------------------------
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
