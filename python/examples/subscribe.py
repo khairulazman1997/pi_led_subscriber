@@ -41,7 +41,7 @@ def colorWipe(strip, color, wait_ms=50):
 #         time.sleep(wait_ms/1000)
 
 def fire(strip, wait_ms=50):
-    for i in range(strip.numPixels):
+    for i in range(strip.numPixels()):
         strip.setPixelColor(i, Color(255, i % 256, 0))
         strip.show()
         time.sleep(wait_ms/1000.0)
@@ -144,7 +144,6 @@ def on_message(client, userdata, message):
 #----------------------------------------------LED Setup------------------------------------------------------------------------
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
-colorWipe(strip, Color(255, 255, 255))
 
 #----------------------------------------------MQTT Setup------------------------------------------------------------------------
 client = mqtt.Client()
@@ -152,5 +151,6 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.connect("192.168.0.119", 1883, 60)
+colorWipe(strip, Color(255, 255, 255))
 
 client.loop_forever()
