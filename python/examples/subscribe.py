@@ -27,19 +27,6 @@ def colorWipe(strip, color, wait_ms=50):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
-def blend(strip, firstColor, secondColor, wait_ms=50):
-    """Blends color from one firstColor to secondColor"""
-    colorOne = Color(255, 0, 0)
-    colorTwo = Color(255, 255, 0)
-    blend = list(colorOne.range_to(colorTwo), LED_COUNT)
-    i = 0
-    for color in blend:
-        strip.setPixelColor(i, color)
-        strip.show()
-        i += 1
-        time.sleep(wait_ms/1000)
-
-
 def theaterChase(strip, color, wait_ms=50, iterations=10):
     """Movie theater light style chaser animation."""
     for j in range(iterations):
@@ -129,10 +116,6 @@ def on_message(client, userdata, message):
         print("Theatre Chase Rainbow mode activated")
         theaterChaseRainbow(strip)
         return
-
-    if "fire" in load:
-        print("Let the flames of ragnarok descend upon us!")
-        blend(strip, "red", "yellow")
 
 #----------------------------------------------LED Setup------------------------------------------------------------------------
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
