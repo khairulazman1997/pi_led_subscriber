@@ -79,30 +79,30 @@ def theaterChaseRainbow(strip, wait_ms=50):
 
 # --------------------------------------------Subscriber Functions---------------------------------------------------------------------
 
-def on_connect(client, userdata, rc):
+def on_connect(client, userdata, flags, rc):
     print("Connected with rc: " + str(rc))
     client.subscribe("codomo/led")
 
 def on_message(client, userdata, message):
-
-    if "red" in message.payload:
+    load = str(message.payload)
+    if "red" in load:
         colorWipe(strip, Color(255, 0, 0))
         return
 
-    if "green" in message.payload:
+    if "green" in load:
         colorWipe(strip, Color(0, 255, 0))
         return
     
-    if "blue" in message.payload:
+    if "blue" in load:
         colorWipe(strip, Color(0, 0, 255))
         return
     
-    if "theaterChase" in message.payload:
+    if "theaterChase" in load:
         theaterChase(strip, Color(127, 127, 127))  # White theater chase
         theaterChase(strip, Color(127,   0,   0))  # Red theater chase
         theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
 
-    if "rainbow" in message.payload:
+    if "rainbow" in load:
         rainbow(strip)
 
 #----------------------------------------------LED Setup------------------------------------------------------------------------
