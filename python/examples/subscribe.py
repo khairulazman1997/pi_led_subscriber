@@ -114,6 +114,6 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("led.codomo.com", 1883, 60)
+client.connect("192.168.0.119", 1883, 60)
 
 client.loop_forever()
