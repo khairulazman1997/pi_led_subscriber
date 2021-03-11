@@ -4,7 +4,6 @@
 import time
 from rpi_ws281x import *
 import argparse
-from colour import color
 
 #MQTT imports
 import paho.mqtt.client as mqtt
@@ -28,17 +27,24 @@ def colorWipe(strip, color, wait_ms=50):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
-def blend(strip, firstColor, secondColor, wait_ms=50):
-    """Blends color from one firstColor to secondColor"""
-    colorOne = firstColor
-    colorTwo = secondColor
-    blend = list(colorOne.range_to(colorTwo), LED_COUNT)
-    i = 0
-    for color in blend:
-        strip.setPixelColor(i, color)
+
+# def blend(strip, firstColor, secondColor, wait_ms=50):
+#     """Blends color from one firstColor to secondColor"""
+#     colorOne = firstColor
+#     colorTwo = secondColor
+#     blend = list(colorOne.range_to(colorTwo), LED_COUNT)
+#     i = 0
+#     for color in blend:
+#         strip.setPixelColor(i, color)
+#         strip.show()
+#         i += 1
+#         time.sleep(wait_ms/1000)
+
+def fire(strip, wait_ms=50):
+    for i in range(strip.numPixels):
+        strip.setPixelColor(i, Color(255, i % 256, 0))
         strip.show()
-        i += 1
-        time.sleep(wait_ms/1000)
+        time.sleep(wait_ms/1000.0)
 
 
 def theaterChase(strip, color, wait_ms=50, iterations=10):
@@ -133,7 +139,7 @@ def on_message(client, userdata, message):
 
     if "fire" in load:
         print("Let the flames of ragnarok descend upon us!")
-        blend(strip, "red", "yellow")
+        fire(strip)
 
 #----------------------------------------------LED Setup------------------------------------------------------------------------
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
