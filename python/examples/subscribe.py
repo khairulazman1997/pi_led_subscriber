@@ -29,8 +29,8 @@ def colorWipe(strip, color, wait_ms=50):
 
 def blend(strip, firstColor, secondColor, wait_ms=50):
     """Blends color from one firstColor to secondColor"""
-    colorOne = Color(firstColor)
-    colorTwo = Color(secondColor)
+    colorOne = Color(255, 0, 0)
+    colorTwo = Color(255, 255, 0)
     blend = list(colorOne.range_to(colorTwo), LED_COUNT)
     i = 0
     for color in blend:
