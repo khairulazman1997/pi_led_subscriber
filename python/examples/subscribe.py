@@ -130,10 +130,6 @@ def on_message(client, userdata, message):
         theaterChaseRainbow(strip)
         return
 
-    if "fire" in load:
-        print("Let the flames of ragnarok descend upon us!")
-        blend(strip, "red", "yellow")
-
 #----------------------------------------------LED Setup------------------------------------------------------------------------
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
