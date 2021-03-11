@@ -111,6 +111,10 @@ def on_message(client, userdata, message):
         print("Rainbow message received. Turning LED to Rainbow")
         rainbow(strip)
 
+    if "theatherChaseRainbow" in load:
+        print("Theatre Chase Rainbow mode activated")
+        theaterChaseRainbow(strip)
+
 #----------------------------------------------LED Setup------------------------------------------------------------------------
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
